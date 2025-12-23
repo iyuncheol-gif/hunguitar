@@ -41,5 +41,4 @@ export const galleryImages = [
   { src: "/assets/img/gallery_Photo_07.jpeg", alt: "Gallery 7" },
   { src: "/assets/img/gallery_Photo_08.jpeg", alt: "Gallery 8" },
   { src: "/assets/img/gallery_Photo_09.jpeg", alt: "Gallery 9" },
-  { src: "/assets/img/gallery_Photo_10.jpeg", alt: "Gallery 10" },
 ];

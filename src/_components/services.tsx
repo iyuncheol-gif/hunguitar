@@ -97,7 +97,7 @@ export default function Services() {
         <div ref={trialRef} className="animate-on-scroll">
           <div className="text-center mb-8">
             <h3 className="text-xl font-semibold text-heading mb-2">
-              Trial Lesson
+              체험수업
             </h3>
             <p className="text-muted text-sm">부담없이 시작해 보세요</p>
           </div>
