@@ -3,9 +3,9 @@
 import Image from "next/image";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import {
-  ShoppingCartIcon,
-  LaptopIcon,
-  LockIcon,
+  ClipboardCheckIcon,
+  BookOpenIcon,
+  UserFocusIcon,
   HeartIcon,
   ChartIcon,
   StudentIcon,
@@ -20,12 +20,12 @@ const IconComponent = ({
   className?: string;
 }) => {
   switch (icon) {
-    case "fa-shopping-cart":
-      return <ShoppingCartIcon className={className} />;
-    case "fa-laptop":
-      return <LaptopIcon className={className} />;
-    case "fa-lock":
-      return <LockIcon className={className} />;
+    case "clipboard-check":
+      return <ClipboardCheckIcon className={className} />;
+    case "book-open":
+      return <BookOpenIcon className={className} />;
+    case "user-focus":
+      return <UserFocusIcon className={className} />;
     case "heart":
       return <HeartIcon className={className} />;
     case "chart":
@@ -85,7 +85,7 @@ export default function Services() {
                 <h4 className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors duration-300">
                   {service.title}
                 </h4>
-                <p className="text-white/80 text-sm leading-relaxed">
+                <p className="text-white/80 text-sm leading-relaxed line-clamp-2">
                   {service.text}
                 </p>
               </div>

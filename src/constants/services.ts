@@ -1,20 +1,20 @@
 export const services = [
   {
-    icon: "fa-shopping-cart",
+    icon: "clipboard-check",
     title: "체계적이고 전문적인 교육",
-    text: "철저하고 체계적인 교육 방식을 도입하여 선생님과 수강생 간의 긴밀한 관계를 통해 개인별 맞춤형 음악 교육을 제공",
+    text: "선생님과 수강생 간의 긴밀한 소통을 바탕으로 개인별 맞춤형 음악 교육을 진행합니다.",
     backgroundImage: "/assets/img/hoonAcoustic_03.png",
   },
   {
-    icon: "fa-laptop",
+    icon: "book-open",
     title: "수준 높은 커리큘럼",
-    text: "학생의 수준을 고려한 맞춤식 커리큘럼이 가능하며 원장 직강으로 수업을 들을 수 있어 학생들의 실력 향상을 위한 체계적인 교육 제공",
+    text: "학생의 수준에 맞춘 커리큘럼과 원장 직강으로 체계적인 실력 향상을 도와드립니다.",
     backgroundImage: "/assets/img/guitar_02.png",
   },
   {
-    icon: "fa-lock",
+    icon: "user-focus",
     title: "학생 중심의 교육 환경",
-    text: "학생과 선생님 간의 긍정적인 상호작용을 통해 학생 개개인의 음악적 잠재력을 최대한 이끌어내는 것을 목표로 함",
+    text: "긍정적인 상호작용을 통해 학생 개개인의 음악적 잠재력을 최대한 이끌어냅니다.",
     backgroundImage: "/assets/img/hunAcoustic_02.jpg",
   },
 ];
