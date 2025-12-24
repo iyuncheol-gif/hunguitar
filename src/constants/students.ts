@@ -1,7 +1,6 @@
 export type StudentVoice = {
   name: string;
   review: string;
-  rating: number;
   imageUrl: string;
   shopItems: string[];
 };
@@ -11,7 +10,6 @@ export const studentVoices: StudentVoice[] = [
     name: "최** 회원님",
     review:
       "막연하게 기타를 배우고 싶다는 생각과 1:1 교습이면 더 좋겠다는 생각으로 검색하다 등록한 곳인데, 1년 반 넘게 배우고 있습니다.\n\n훈 원장님의 가장 큰 장점은 제가 이해를 못 하고 잘 못 쳐도 절대 화를 내지 않으십니다. 크크크.. 저처럼 완전 생초보 취미 생들에겐 천사 같은 원장님이에요!!\n\n아직도 서투르고 기타 소리도 이상하게 날 때가 더 많지만, 내가 좋아했던 노래를 기타로 치면서 노래 부르다 보면 기타 배우기 잘했다는 생각이 들어요.",
-    rating: 5,
     imageUrl: "/assets/img/puppy_01.jpg",
     shopItems: [
       "맞춤지도를 잘해줘요",
@@ -25,7 +23,6 @@ export const studentVoices: StudentVoice[] = [
     name: "임** 회원님",
     review:
       "오래전부터 기타를 배우고 싶었는데, 산책하다 발견한 학원이었어요!\n\n처음 상담 때부터 원장님이 정말 상냥하게 맞아주셔서 편안하게 상담받을 수 있었습니다. 무엇보다 수업하시는 중에도 저의 속도에 맞춰 알기 쉽게 설명해주시고, 친절하고 재치있으신 원장님 덕분에 즐겁게 배울 수 있었어요...\n\n가볍게 시작했는데, 매 시간이 기다려지고 수업이 정말 재밌어요. 혹시나 정자동 쪽에서 기타 교습 고민하신다면 여기 진짜 강력 추천드려요!!!",
-    rating: 4,
     imageUrl: "/assets/img/minion.jpg",
     shopItems: [
       "선생님 실력이 좋아요",
@@ -39,7 +36,6 @@ export const studentVoices: StudentVoice[] = [
     name: "Olive** 회원님",
     review:
       "원장 선생님께서 매우 친절하시고 좋으세요!! ^.^***\n\n제가 궁금한 부분들을 아주 꼼꼼히 체크해서 알려주시고 좋은 곡들도 많이 추천해주셔서 기타치고 배우기가 훨씬 수월해졌습니다!\n\n그리고 일단 학원이 예뻐서 기분이 좋았습니다. 공영주차장이 바로 옆에 있어서 주차도 편했구요!! ㅎㅎ",
-    rating: 4.5,
     imageUrl: "/assets/img/raccoon.jpeg",
     shopItems: [
       "주차하기 편해요",
@@ -53,7 +49,6 @@ export const studentVoices: StudentVoice[] = [
     name: "최** 회원님",
     review:
       "정자동 기타학원 우연히 검색하다가 상담했는데...\n\n선생님께서 차분하게 상담 도와주셔서 기타 배우는데, 제수준에 맞춰서 잘 맞춰서 가르쳐주세요!\n\n무엇보다 공간이 주는 나무의 사계절을 볼 수 있어서 좋고, 기타를 배우면서 쉼을 누리면서 에너지가 생겨서 좋아요!",
-    rating: 4,
     imageUrl: "/assets/img/lion.jpeg",
     shopItems: [
       "선생님 실력이 좋아요",
@@ -67,8 +62,83 @@ export const studentVoices: StudentVoice[] = [
     name: "탑** 회원님",
     review:
       "수업받은 지 이제 3년 좀 더 된 것 같습니다. 제 눈높이에 맞춰서 자세하게 알려주셔서 좋아요!\n\n가끔 내려주시는 커피도 너무 좋고요...\n\n처음엔 통기타로 시작해서 요새는 클래식 기타 배우고 있는데, 다른 재미가 있는 것 같아요. 많은 분이 오셔서 저처럼 이런 즐거움을 얻어가셨음 좋겠습니다...!",
-    rating: 4,
     imageUrl: "/assets/img/ducks.jpeg",
-    shopItems: [],
+    shopItems: [
+      "시설이 깔끔해요",
+      "아늑해요",
+      "학생과 소통을 잘해요",
+      "맞춤 지도를 잘해줘요",
+      "수업이 체계적이에요",
+    ],
+  },
+  {
+    name: "munni*** 회원님",
+    review:
+      "선생님이 친절하게 잘 가르쳐주세요~\n\n완전 초보였는데 몇 달째 꾸준히 해오면서 배우고 있습니다:)\n\n기타 들을 때마다 기분이 좋아요~~",
+    imageUrl: "/assets/img/profileImage.jpg",
+    shopItems: ["친절해요", "초보자 환영"],
+  },
+  {
+    name: "13p*** 회원님",
+    review:
+      "기타에 대한관심만 있던 무지 초보자에요 시작부터 눈높이에 맞춰주셔서 재밌게고 있습니다. 수 가지 악보에 적혀있는 거 하나도 모르는데 a, b, c 부터 알려주시고 이런저런 팁도 주셔서 재미있게 배우고 있습니다.\n\n집!",
+    imageUrl: "/assets/img/profile_default.png",
+    shopItems: ["초보자 맞춤", "눈높이 교육"],
+  },
+  {
+    name: "닉** 회원님",
+    review:
+      "간만에 제가 7년 수강 중인 회원 써봐요~! 감사하게도 아직도 기타를 즐기며 배우고 있고, 많은 곡을 배우며 세월이 지나가네요~!\n\n다 원장님이 잘 가르쳐 주셔서 이고요~ 앞으로도 잘 부탁드립니다~^^",
+    imageUrl: "/assets/img/profile_default.png",
+    shopItems: ["장기 수강", "실력 향상"],
+  },
+  {
+    name: "ksc0***** 회원님",
+    review:
+      "제가 배우고 싶은 연주곡을 집중적으로 가르쳐주셔서 너무나 나이에 제한 없는 취미로 좋은거 같아요~\n\n선생님께서 친절하시고 잘 가르쳐주세요~",
+    imageUrl: "/assets/img/profile_default.png",
+    shopItems: ["맞춤 수업", "친절한 선생님"],
+  },
+  {
+    name: "최** 회원님",
+    review:
+      "기타에 대한 막연한 로망으로 몇 년 전 가르쳐 달라고 조르기 시작해서 운이 좋게 이 학원을 알게 되었습니다. 고마운 것은 저처럼 왕초보... 아니 제로에서 시작하는 학생도 눈높이에 맞춰서 교습해 주셔서 끈기 없는 저도 꾸준히 배워 오고 있습니다.\n\n거기에 교습이 끝나면 내려주시는 핸드드립 커피는 덤이에요. 짱짱맨",
+    imageUrl: "/assets/img/profile_default.png",
+    shopItems: ["왕초보 환영", "눈높이 맞춤", "핸드드립 커피"],
+  },
+  {
+    name: "야** 회원님",
+    review:
+      "직장인이라서 야간에 배우고 있는데요 1:1 교습이라 더 좋고요 수업시간도 협의가능해서 진짜 편하게 배우고 있습니다.\n\n기타 배우고 싶다는 생각만 하고 있으신 분들 고민말고 한 번 상담받아보세요~! 쌤도 친절하시고 분위기도 너무 좋아요 :)",
+    imageUrl: "/assets/img/profile_default.png",
+    shopItems: ["야간 수업", "1:1 교습", "시간 협의 가능"],
+  },
+  {
+    name: "흰둥**세탁소일상 회원님",
+    review:
+      "기타치며 노래하고 싶다는 생각만 있었지 선뜻 용기가 없었는데 이 학원 만나고 너무 좋아서 이제 2년 넘게 다니고 있습니다.\n\n완전 왕초보인 저의 수준에 맞춰서 '이것도 몰라?' 하는 눈빛 없이 잘 가르쳐 주시고 저와 같은 속도로 천천히 수업해 주세요. 꾸준히 다닐 수 있는 이유입니다:)",
+    imageUrl: "/assets/img/profile_default.png",
+    shopItems: ["왕초보 맞춤", "친절한 수업", "장기 수강"],
+  },
+  {
+    name: "kim**18 회원님",
+    review:
+      "취미로 배우고 있는데 선생님이 나의 진도에 맞춰서 가르쳐주셔서 너무 만족합니다!\n\n취미생활로 기타에 도전한다면 이 학원을 강추합니다!",
+    imageUrl: "/assets/img/profile_default.png",
+    shopItems: ["취미 추천", "맞춤 진도"],
+  },
+  {
+    name: "rmwlg***** 회원님",
+    review:
+      "집앞에서 배워서 좋기도 하지만 눈높이 맞춰서 재밌게 배우고 있습니다:>\n\n담당 쌤도 친절하시고 기타치고요. 그리고 끝나면 따뜻하게 차도 주세요.\n\n좋음!",
+    imageUrl: "/assets/img/profile_default.png",
+    shopItems: ["눈높이 수업", "친절한 선생님", "차 서비스"],
+  },
+  {
+    name: "안녕**나 회원님",
+    review:
+      "쌤 나이가 젊어서 주니까 친근함있으시고 재밌습니다 오죠오!!\n\n분위기도 좋고 힐링되는 공간이에요",
+    imageUrl: "/assets/img/profile_default.png",
+    shopItems: ["친근한 선생님", "힐링 공간"],
   },
 ];
