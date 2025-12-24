@@ -82,7 +82,7 @@ export default function Header() {
             }`}
           >
             <Image
-              src="/assets/img/hunAcousticLogo_01.png"
+              src={isScrolled ? "/assets/img/hunAcousticLogo_01.png" : "/assets/img/hunAcousticLogo_01_white.png"}
               alt="훈:어쿠스틱기타하우스"
               width={140}
               height={40}
@@ -103,15 +103,17 @@ export default function Header() {
                   href={item.href}
                   className={`relative px-3 py-2 text-sm font-medium transition-colors duration-300 ${
                     isActive
-                      ? "text-primary"
+                      ? isScrolled
+                        ? "text-primary"
+                        : "text-white"
                       : isScrolled
                       ? "text-heading hover:text-primary"
-                      : "text-heading/80 hover:text-primary"
+                      : "text-white/90 hover:text-white"
                   }`}
                 >
                   {item.label}
                   {isActive && (
-                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary rounded-full" />
+                    <span className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full ${isScrolled ? "bg-primary" : "bg-white"}`} />
                   )}
                 </Link>
               );
