@@ -103,17 +103,15 @@ export default function Header() {
                   href={item.href}
                   className={`relative px-3 py-2 text-sm font-medium transition-colors duration-300 ${
                     isActive
-                      ? isScrolled
-                        ? "text-primary"
-                        : "text-white"
+                      ? "text-primary"
                       : isScrolled
-                      ? "text-heading hover:text-primary"
-                      : "text-white/90 hover:text-white"
+                      ? "text-heading hover:text-primary focus:text-primary"
+                      : "text-white/90 hover:text-primary focus:text-primary"
                   }`}
                 >
                   {item.label}
                   {isActive && (
-                    <span className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full ${isScrolled ? "bg-primary" : "bg-white"}`} />
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary" />
                   )}
                 </Link>
               );
