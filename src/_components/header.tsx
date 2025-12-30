@@ -82,7 +82,7 @@ export default function Header() {
             }`}
           >
             <Image
-              src={isScrolled ? "/assets/img/hunAcousticLogo_01.png" : "/assets/img/hunAcousticLogo_01_white.png"}
+              src={isScrolled ? "/assets/img/common/logo.png" : "/assets/img/common/logo_white.png"}
               alt="훈:어쿠스틱기타하우스"
               width={140}
               height={40}

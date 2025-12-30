@@ -35,7 +35,7 @@ export default function Lesson() {
           {/* Background Image - 원본 비율 유지 */}
           <div className="relative h-[500px] md:h-[650px]">
             <Image
-              src="/assets/img/hun_07.png"
+              src="/assets/img/lesson/teacher.png"
               alt="김훈섭 선생님"
               fill
               className="object-cover md:object-contain object-center md:object-top transition-transform duration-700 hover:scale-[1.02]"

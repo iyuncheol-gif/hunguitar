@@ -32,7 +32,7 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <Image
-              src="/assets/img/hunAcousticLogo_01.png"
+              src="/assets/img/common/logo.png"
               alt="훈:어쿠스틱기타하우스"
               width={160}
               height={45}

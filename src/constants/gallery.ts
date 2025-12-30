@@ -32,13 +32,14 @@ export const benefits = [
 ];
 
 export const galleryImages = [
-  { src: "/assets/img/gallery_Photo_01.jpeg", alt: "Gallery 1" },
-  { src: "/assets/img/gallery_Photo_02.jpeg", alt: "Gallery 2" },
-  { src: "/assets/img/gallery_Photo_03.jpeg", alt: "Gallery 3" },
-  { src: "/assets/img/gallery_Photo_04.jpeg", alt: "Gallery 4" },
-  { src: "/assets/img/gallery_Photo_05.jpeg", alt: "Gallery 5" },
-  { src: "/assets/img/gallery_Photo_06.jpeg", alt: "Gallery 6" },
-  { src: "/assets/img/gallery_Photo_07.jpeg", alt: "Gallery 7" },
-  { src: "/assets/img/gallery_Photo_08.jpeg", alt: "Gallery 8" },
-  { src: "/assets/img/gallery_Photo_09.jpeg", alt: "Gallery 9" },
+  { src: "/assets/img/gallery/01.jpeg", alt: "Gallery 1" },
+  { src: "/assets/img/gallery/02.jpeg", alt: "Gallery 2" },
+  { src: "/assets/img/gallery/03.jpeg", alt: "Gallery 3" },
+  { src: "/assets/img/gallery/04.jpeg", alt: "Gallery 4" },
+  { src: "/assets/img/gallery/05.jpeg", alt: "Gallery 5" },
+  { src: "/assets/img/gallery/06.jpeg", alt: "Gallery 6" },
+  { src: "/assets/img/gallery/07.jpeg", alt: "Gallery 7" },
+  { src: "/assets/img/gallery/08.jpeg", alt: "Gallery 8" },
+  { src: "/assets/img/gallery/09.jpeg", alt: "Gallery 9" },
+  { src: "/assets/img/gallery/10.jpeg", alt: "Gallery 10" },
 ];

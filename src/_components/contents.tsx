@@ -157,7 +157,7 @@ export default function Contents() {
               className="inline-flex items-center px-6 py-3 bg-primary text-white font-semibold rounded-xl hover:bg-primary/90 transition-colors duration-300 shadow-md hover:shadow-lg whitespace-nowrap"
             >
               <Image
-                src="/assets/img/naver_blog.png"
+                src="/assets/img/social/blog.png"
                 alt="Naver Blog"
                 width={20}
                 height={20}

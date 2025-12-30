@@ -9,7 +9,7 @@ export default function Home() {
     >
       {/* Background Image */}
       <Image
-        src="/assets/img/guitar_01.jpg"
+        src="/assets/img/home/bg.jpg"
         alt="Guitar background"
         fill
         priority
