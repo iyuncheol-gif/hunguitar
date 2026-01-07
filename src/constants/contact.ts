@@ -41,4 +41,4 @@ export const locationInfo = {
   directions: "정자역 4번 출구에서 도보 10분",
 };
 
-export const KAKAO_MAP_APP_KEY = "73b58cdea92ee98aecaf58c60e5844aa";
+export const KAKAO_MAP_APP_KEY = "e599948dd7a447a64b9852ecf9932223";
