@@ -3,7 +3,7 @@ export const siteConfig = {
   description:
     "분당 정자동 기타 레슨 전문 학원. 통기타, 핑거스타일, 어쿠스틱 기타를 전문 강사에게 1:1 맞춤 레슨으로 배워보세요. 초보부터 고급까지 체계적인 커리큘럼 제공.",
   url: "https://hunguitar.com",
-  ogImage: "/assets/img/og-image.png",
+  ogImage: "/assets/img/home/bg.jpg",
   keywords: [
     "기타 레슨",
     "분당 기타",
