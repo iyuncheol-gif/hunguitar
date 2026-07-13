@@ -3,6 +3,7 @@ export const navItems = [
   { label: "SERVICES", href: "#services" },
   { label: "GALLERY", href: "#gallery" },
   { label: "LESSON", href: "#lesson" },
+  { label: "PRICING", href: "#pricing" },
   { label: "CONTENTS", href: "#portfolio" },
   { label: "OUR STUDENTS", href: "#students" },
   { label: "CONTACT", href: "#contact" },
@@ -13,6 +14,7 @@ export const quickLinks = [
   { label: "SERVICES", href: "#services" },
   { label: "GALLERY", href: "#gallery" },
   { label: "LESSON", href: "#lesson" },
+  { label: "PRICING", href: "#pricing" },
   { label: "CONTENTS", href: "#portfolio" },
   { label: "CONTACT", href: "#contact" },
 ];
@@ -25,7 +27,7 @@ export const socialLinks = [
   },
   {
     name: "Instagram",
-    url: "https://www.instagram.com/hun_guitarrr/",
+    url: "https://www.instagram.com/guitar_n_vocal_/",
     icon: "instagram",
   },
   {

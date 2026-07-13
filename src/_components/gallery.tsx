@@ -3,10 +3,16 @@
 import Image from "next/image";
 import { useCallback, useEffect, useState, useRef } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import type { EmblaCarouselType } from "embla-carousel";
 import AutoplayPlugin from "embla-carousel-autoplay";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { ChevronLeftIcon, ChevronRightIcon } from "@/icons";
 import { benefits, galleryImages } from "@/constants";
+
+// 슬라이드 이동 시 사진이 프레임 안에서 반대로 미끄러지는 패럴랙스 강도
+// (화면에 3장이 보이므로, 보이는 범위(약 3스냅) 전체에서 ±19% 안에 들도록 고정 계수 사용)
+const TWEEN_FACTOR = 0.66;
+const MAX_PARALLAX = 19; // % — 레이어 여유폭(±20%) 안에서 클램프
 
 export default function Gallery() {
   const sectionRef = useScrollAnimation<HTMLElement>();
@@ -25,9 +31,71 @@ export default function Gallery() {
       loop: true,
       align: "start",
       slidesToScroll: 1,
+      duration: 45,
     },
     [autoplayRef.current]
   );
+
+  // 패럴랙스 트윈
+  const tweenNodes = useRef<(HTMLElement | null)[]>([]);
+
+  const setTweenNodes = useCallback((api: EmblaCarouselType) => {
+    tweenNodes.current = api
+      .slideNodes()
+      .map((node) => node.querySelector<HTMLElement>(".parallax-layer"));
+  }, []);
+
+  const tweenParallax = useCallback((api: EmblaCarouselType) => {
+    const engine = api.internalEngine();
+    const scrollProgress = api.scrollProgress();
+
+    api.scrollSnapList().forEach((scrollSnap, snapIndex) => {
+      let diffToTarget = scrollSnap - scrollProgress;
+      const slidesInSnap = engine.slideRegistry[snapIndex];
+
+      slidesInSnap.forEach((slideIndex) => {
+        if (engine.options.loop) {
+          engine.slideLooper.loopPoints.forEach((loopItem) => {
+            const target = loopItem.target();
+            if (slideIndex === loopItem.index && target !== 0) {
+              const sign = Math.sign(target);
+              if (sign === -1) diffToTarget = scrollSnap - (1 + scrollProgress);
+              if (sign === 1) diffToTarget = scrollSnap + (1 - scrollProgress);
+            }
+          });
+        }
+
+        const raw = diffToTarget * (-1 * TWEEN_FACTOR) * 100;
+        const translate = Math.max(-MAX_PARALLAX, Math.min(MAX_PARALLAX, raw));
+        // 제자리에서 멀수록 살짝 줌인 → 팬+줌이 겹치며 깊이감
+        const scale = 1 + Math.min(Math.abs(translate) * 0.005, 0.09);
+        const node = tweenNodes.current[slideIndex];
+        if (node)
+          node.style.transform = `translateX(${translate}%) scale(${scale})`;
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    setTweenNodes(emblaApi);
+    tweenParallax(emblaApi);
+
+    emblaApi
+      .on("reInit", setTweenNodes)
+      .on("reInit", tweenParallax)
+      .on("scroll", tweenParallax)
+      .on("slideFocus", tweenParallax);
+
+    return () => {
+      emblaApi
+        .off("reInit", setTweenNodes)
+        .off("reInit", tweenParallax)
+        .off("scroll", tweenParallax)
+        .off("slideFocus", tweenParallax);
+    };
+  }, [emblaApi, setTweenNodes, tweenParallax]);
 
   const handleMouseEnter = useCallback(() => {
     autoplayRef.current.stop();
@@ -83,11 +151,11 @@ export default function Gallery() {
       <div className="max-w-7xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-heading uppercase mb-2">
+          <h2 className="text-3xl md:text-4xl font-serif font-semibold text-heading uppercase tracking-wide mb-3">
             Gallery
           </h2>
-          <hr className="w-16 border-t-4 border-primary mx-auto mb-4" />
-          <p className="text-muted">훈:어쿠스틱기타하우스의 공간</p>
+          <hr className="w-12 border-t border-primary/60 mx-auto mb-4" />
+          <p className="text-muted">분당기타&amp;보컬의 공간</p>
         </div>
 
         {/* Carousel Container */}
@@ -106,12 +174,15 @@ export default function Gallery() {
                   className="flex-[0_0_100%] md:flex-[0_0_33.333%] min-w-0 pl-4"
                 >
                   <div className="relative aspect-4/3 rounded-xl overflow-hidden shadow-lg group cursor-pointer">
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
+                    {/* 패럴랙스 레이어: 프레임보다 좌우로 넓게 잡고 스크롤에 따라 이동 */}
+                    <div className="parallax-layer absolute inset-y-0 -inset-x-[20%] will-change-transform">
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
                     {/* Hover Overlay */}
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
                   </div>
@@ -172,11 +243,11 @@ export default function Gallery() {
         {/* Benefits Section */}
         <div ref={benefitRef} className="mt-16 animate-on-scroll">
           <div className="text-center mb-8">
-            <h3 className="text-xl font-semibold text-heading mb-2">
-              Why Guitar?
+            <h3 className="text-2xl font-serif font-semibold text-heading mb-2">
+              Why Music?
             </h3>
             <p className="text-muted text-sm">
-              체계적인 레슨과 함께 기타 연주 실력을 키워보세요
+              체계적인 레슨과 함께 기타·보컬 실력을 키워보세요
             </p>
           </div>
 

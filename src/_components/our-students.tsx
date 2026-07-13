@@ -8,15 +8,27 @@ import { studentVoices } from "@/constants";
 
 const INITIAL_DISPLAY_COUNT = 6;
 const LOAD_MORE_COUNT = 3;
+// 이 길이를 넘으면 접어두고 카드별 '더보기'로 펼침
+const CLAMP_THRESHOLD = 110;
 
 export default function OurStudents() {
   const sectionRef = useScrollAnimation<HTMLElement>();
   const [displayCount, setDisplayCount] = useState(INITIAL_DISPLAY_COUNT);
   const [prevDisplayCount, setPrevDisplayCount] = useState(INITIAL_DISPLAY_COUNT);
+  const [expanded, setExpanded] = useState<Set<number>>(new Set());
   const newItemsRef = useRef<HTMLDivElement[]>([]);
 
   const displayedStudents = studentVoices.slice(0, displayCount);
   const hasMore = displayCount < studentVoices.length;
+
+  const toggleExpand = (index: number) => {
+    setExpanded((prev) => {
+      const next = new Set(prev);
+      if (next.has(index)) next.delete(index);
+      else next.add(index);
+      return next;
+    });
+  };
 
   const handleLoadMore = () => {
     setPrevDisplayCount(displayCount);
@@ -44,20 +56,22 @@ export default function OurStudents() {
 
   return (
     <section id="students" ref={sectionRef} className="py-20 animate-on-scroll">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-6xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-heading uppercase mb-2">
+          <h2 className="text-3xl md:text-4xl font-serif font-semibold text-heading uppercase tracking-wide mb-3">
             Our Students
           </h2>
-          <hr className="w-16 border-t-4 border-primary mx-auto mb-4" />
+          <hr className="w-12 border-t border-primary/60 mx-auto mb-4" />
           <p className="text-muted">고객의 소리</p>
         </div>
 
-        {/* Masonry Grid */}
-        <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
+        {/* Uniform Grid — 균일한 3열, 같은 행은 같은 높이 */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {displayedStudents.map((student, index) => {
             const isNewItem = index >= prevDisplayCount;
+            const isLong = student.review.length > CLAMP_THRESHOLD;
+            const isOpen = expanded.has(index);
             return (
               <div
                 key={index}
@@ -66,57 +80,57 @@ export default function OurStudents() {
                     newItemsRef.current[index - prevDisplayCount] = el;
                   }
                 }}
-                className="break-inside-avoid bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                className="flex flex-col bg-white rounded-2xl ring-1 ring-black/[0.04] shadow-sm hover:shadow-md transition-shadow duration-300 p-6"
               >
-                {/* Card Header with Profile - 중앙 정렬 */}
-                <div className="p-5 pb-4">
-                  <div className="flex flex-col items-center text-center">
-                    {/* Profile Image */}
-                    <div className="relative w-16 h-16 mb-3">
-                      <div className="absolute inset-0 rounded-full bg-linear-to-br from-primary to-primary/60 p-0.5">
-                        <div className="w-full h-full rounded-full overflow-hidden bg-white">
-                          <Image
-                            src={student.imageUrl}
-                            alt={student.name}
-                            fill
-                            className="object-cover rounded-full"
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Name */}
-                    <h4 className="font-bold text-heading text-base">
-                      {student.name}
-                    </h4>
+                {/* Card Header — 인라인 프로필 */}
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="relative w-9 h-9 shrink-0 rounded-full overflow-hidden ring-1 ring-black/[0.06]">
+                    <Image
+                      src={student.imageUrl}
+                      alt={student.name}
+                      fill
+                      className="object-cover rounded-full"
+                      sizes="36px"
+                    />
                   </div>
+                  <h4 className="font-bold text-heading text-sm truncate">
+                    {student.name}
+                  </h4>
+                  <span className="ml-auto font-serif text-3xl text-primary/25 leading-none select-none">
+                    &ldquo;
+                  </span>
                 </div>
 
-                {/* Review Text */}
-                <div className="px-5 pb-4">
-                  <div className="relative">
-                    <span className="absolute -top-1 -left-1 text-3xl text-primary/20 font-serif">
-                      &quot;
-                    </span>
-                    <p className="text-muted text-sm leading-relaxed pl-4 whitespace-pre-line">
-                      {student.review}
-                    </p>
-                  </div>
-                </div>
+                {/* Review Text — 길면 5줄 클램프 */}
+                <p
+                  className={`text-muted text-sm leading-relaxed whitespace-pre-line ${
+                    isLong && !isOpen ? "line-clamp-5" : ""
+                  }`}
+                >
+                  {student.review}
+                </p>
 
-                {/* Shop Items Tags */}
+                {/* 더보기 / 접기 */}
+                {isLong && (
+                  <button
+                    onClick={() => toggleExpand(index)}
+                    className="self-start mt-2 text-xs font-medium text-primary/80 hover:text-primary transition-colors"
+                  >
+                    {isOpen ? "접기 ↑" : "더보기 ↓"}
+                  </button>
+                )}
+
+                {/* Shop Items Tags — 카드 하단에 고정 */}
                 {student.shopItems.length > 0 && (
-                  <div className="px-5 pb-5">
-                    <div className="flex flex-wrap gap-1.5">
-                      {student.shopItems.map((item, idx) => (
-                        <span
-                          key={idx}
-                          className="inline-block px-2 py-0.5 bg-primary/10 text-primary text-xs rounded-md"
-                        >
-                          {item}
-                        </span>
-                      ))}
-                    </div>
+                  <div className="flex flex-wrap gap-1.5 mt-auto pt-4 border-t border-gray-100">
+                    {student.shopItems.map((item, idx) => (
+                      <span
+                        key={idx}
+                        className="inline-block px-2.5 py-0.5 bg-primary/[0.06] text-primary/90 text-[11px] rounded-full"
+                      >
+                        {item}
+                      </span>
+                    ))}
                   </div>
                 )}
               </div>

@@ -32,14 +32,13 @@ export const benefits = [
 ];
 
 export const galleryImages = [
-  { src: "/assets/img/gallery/01.jpeg", alt: "Gallery 1" },
-  { src: "/assets/img/gallery/02.jpeg", alt: "Gallery 2" },
-  { src: "/assets/img/gallery/03.jpeg", alt: "Gallery 3" },
-  { src: "/assets/img/gallery/04.jpeg", alt: "Gallery 4" },
-  { src: "/assets/img/gallery/05.jpeg", alt: "Gallery 5" },
-  { src: "/assets/img/gallery/06.jpeg", alt: "Gallery 6" },
-  { src: "/assets/img/gallery/07.jpeg", alt: "Gallery 7" },
-  { src: "/assets/img/gallery/08.jpeg", alt: "Gallery 8" },
-  { src: "/assets/img/gallery/09.jpeg", alt: "Gallery 9" },
-  { src: "/assets/img/gallery/10.jpeg", alt: "Gallery 10" },
+  { src: "/assets/img/studio/main.jpg", alt: "분당기타&보컬 기타 쇼룸과 상담 공간" },
+  { src: "/assets/img/studio/lobby.jpg", alt: "밝고 넓은 방음 스튜디오 공용 공간" },
+  { src: "/assets/img/studio/vocal-1.jpg", alt: "보컬·녹음 레슨 스튜디오" },
+  { src: "/assets/img/studio/vocal-2.jpg", alt: "1:1 보컬 연습실" },
+  { src: "/assets/img/studio/entrance.jpg", alt: "분당기타&보컬 입구와 라운지" },
+  { src: "/assets/img/studio/detail.jpg", alt: "다양한 기타와 우쿨렐레가 있는 공간" },
+  { src: "/assets/img/studio/lounge.jpg", alt: "따뜻한 조명의 라운지 공간" },
+  { src: "/assets/img/studio/booth-1.jpg", alt: "쾌적한 방음 레슨 부스" },
+  { src: "/assets/img/studio/booth-2.jpg", alt: "채광 좋은 개인 연습 부스" },
 ];

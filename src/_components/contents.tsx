@@ -24,90 +24,47 @@ export default function Contents() {
       <div className="max-w-7xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-heading uppercase mb-2">
+          <h2 className="text-3xl md:text-4xl font-serif font-semibold text-heading uppercase tracking-wide mb-3">
             Contents
           </h2>
-          <hr className="w-16 border-t-4 border-primary mx-auto mb-4" />
+          <hr className="w-12 border-t border-primary/60 mx-auto mb-4" />
           <p className="text-muted">유용한 기타 팁과 콘텐츠를 만나보세요</p>
         </div>
 
-        {/* Featured Content */}
+        {/* Featured Content — 브랜드 사진 기반 배너 */}
         <div className="mb-12">
           <a
             href={featuredContent.link}
             target="_blank"
             rel="noreferrer"
-            className="group block relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500"
+            className="group block relative rounded-2xl overflow-hidden ring-1 ring-black/[0.05] shadow-md hover:shadow-lg transition-all duration-500"
           >
-            <div className="relative h-[300px] md:h-[400px]">
+            <div className="relative h-[240px] md:h-[300px]">
               <Image
                 src={featuredContent.image}
                 alt={featuredContent.title}
                 fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                className="object-cover object-[center_35%] grayscale-[0.45] brightness-110 contrast-[0.92] transition-transform duration-700 group-hover:scale-[1.03]"
+                sizes="(max-width: 768px) 100vw, 1280px"
               />
-              <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
-              <div className="absolute inset-0 bg-linear-to-r from-black/50 via-transparent to-transparent" />
+              {/* 크림 톤 워시(전체) + 좌측 강조로 페이지 톤과 어울리게 */}
+              <div className="absolute inset-0 bg-[rgba(247,244,239,0.5)]" />
+              <div className="absolute inset-0 bg-linear-to-r from-[rgba(247,244,239,0.95)] via-[rgba(247,244,239,0.68)] to-[rgba(247,244,239,0.28)]" />
 
-              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
-                <span className="inline-block px-3 py-1 bg-primary text-white text-xs font-semibold rounded-full mb-3">
+              <div className="absolute inset-0 flex flex-col justify-center p-8 md:p-12 max-w-2xl">
+                <p className="text-primary text-xs font-semibold tracking-[0.25em] uppercase mb-3">
                   {featuredContent.tag}
-                </span>
-                <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 group-hover:text-primary transition-colors duration-300">
+                </p>
+                <h3 className="font-serif text-2xl md:text-3xl font-semibold text-heading mb-3">
                   {featuredContent.title}
                 </h3>
-                <p className="text-white/80 text-sm max-w-2xl">
+                <p className="text-muted text-sm mb-5">
                   {featuredContent.description}
                 </p>
-              </div>
-            </div>
-          </a>
-        </div>
-
-        {/* Blog Posts Grid */}
-        <div
-          ref={gridRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-on-scroll"
-        >
-          {displayedPosts.map((post, index) => (
-            <a
-              key={post.title}
-              href={post.link}
-              target="_blank"
-              rel="noreferrer"
-              className="group relative bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-              style={{ animationDelay: `${index * 50}ms` }}
-            >
-              {/* Image */}
-              <div className="relative h-48 overflow-hidden">
-                <Image
-                  src={post.image}
-                  alt={post.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                {/* Tag */}
-                <span className="absolute top-3 left-3 px-2 py-1 bg-primary/90 backdrop-blur-sm text-white text-xs font-semibold rounded-md">
-                  {post.tag}
-                </span>
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
-              </div>
-
-              {/* Content */}
-              <div className="p-5">
-                <h4 className="text-lg font-bold text-heading mb-2 group-hover:text-primary transition-colors duration-300 line-clamp-1">
-                  {post.title}
-                </h4>
-                <p className="text-muted text-sm line-clamp-2">
-                  {post.description}
-                </p>
-
-                {/* Read More */}
-                <div className="mt-4 flex items-center text-primary text-sm font-medium">
-                  <span>자세히 보기</span>
+                <span className="inline-flex items-center gap-1.5 text-heading group-hover:text-primary text-sm font-semibold transition-colors">
+                  읽어보기
                   <svg
-                    className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-300"
+                    className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -119,8 +76,63 @@ export default function Contents() {
                       d="M9 5l7 7-7 7"
                     />
                   </svg>
-                </div>
+                </span>
               </div>
+            </div>
+          </a>
+        </div>
+
+        {/* Blog Posts — 에디토리얼 리스트 */}
+        <div
+          ref={gridRef}
+          className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-on-scroll"
+        >
+          {displayedPosts.map((post) => (
+            <a
+              key={post.title}
+              href={post.link}
+              target="_blank"
+              rel="noreferrer"
+              className="group flex items-center gap-5 bg-white rounded-2xl p-4 pr-5 ring-1 ring-black/[0.04] shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
+            >
+              {/* Thumbnail — 작게, 무드 해치지 않게 */}
+              <div className="relative w-20 h-20 md:w-24 md:h-24 shrink-0 rounded-xl overflow-hidden bg-surface ring-1 ring-black/[0.06]">
+                <Image
+                  src={post.image}
+                  alt={post.title}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="96px"
+                />
+              </div>
+
+              {/* Copy */}
+              <div className="min-w-0 flex-1">
+                <span className="inline-block px-2 py-0.5 bg-primary/[0.08] text-primary/90 text-[11px] font-medium rounded-full mb-1.5">
+                  {post.tag}
+                </span>
+                <h4 className="text-base font-bold text-heading group-hover:text-primary transition-colors duration-300 line-clamp-1">
+                  {post.title}
+                </h4>
+                <p className="text-muted text-sm line-clamp-1 mt-0.5">
+                  {post.description}
+                </p>
+              </div>
+
+              {/* Arrow */}
+              <svg
+                className="w-4 h-4 text-muted/50 shrink-0 transition-all duration-300 group-hover:text-primary group-hover:translate-x-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
             </a>
           ))}
         </div>

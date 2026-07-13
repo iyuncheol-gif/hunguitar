@@ -1,29 +1,29 @@
 export const services = [
   {
     icon: "clipboard-check",
-    title: "체계적이고 전문적인 교육",
-    text: "선생님과 수강생 간의 긴밀한 소통을 바탕으로 개인별 맞춤형 음악 교육을 진행합니다.",
-    backgroundImage: "/assets/img/services/bg_01.png",
+    title: "기타 · 보컬 전문 교육",
+    text: "통기타·어쿠스틱부터 보컬·실용음악까지, 긴밀한 소통을 바탕으로 개인별 맞춤형 음악 교육을 진행합니다.",
+    backgroundImage: "/assets/img/studio/main.jpg",
   },
   {
     icon: "book-open",
-    title: "수준 높은 커리큘럼",
-    text: "학생의 수준에 맞춘 커리큘럼과 원장 직강으로 체계적인 실력 향상을 도와드립니다.",
-    backgroundImage: "/assets/img/services/bg_02.png",
+    title: "전문 방음 스튜디오",
+    text: "쾌적한 방음 부스와 녹음 장비를 갖춘 밝고 프리미엄한 공간에서 몰입도 높은 레슨을 받으세요.",
+    backgroundImage: "/assets/img/studio/vocal-1.jpg",
   },
   {
     icon: "user-focus",
     title: "학생 중심의 교육 환경",
     text: "긍정적인 상호작용을 통해 학생 개개인의 음악적 잠재력을 최대한 이끌어냅니다.",
-    backgroundImage: "/assets/img/services/bg_03.jpg",
+    backgroundImage: "/assets/img/studio/lobby.jpg",
   },
 ];
 
 export const trialLessons = [
   {
     icon: "heart",
-    title: "궁합 확인",
-    text: "장기 등록 전 선생님과의 궁합 확인하고 싶은 분들에게 완벽한 기회입니다.",
+    title: "케미 확인",
+    text: "장기 등록 전 선생님과의 케미를 확인하고 싶은 분들에게 완벽한 기회입니다.",
   },
   {
     icon: "chart",

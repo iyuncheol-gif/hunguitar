@@ -14,8 +14,9 @@ export { services, trialLessons, testimonials } from "./services";
 export { benefits, galleryImages } from "./gallery";
 
 // Lesson
+export type { Teacher } from "./lesson";
 export {
-  teacherInfo,
+  teachers,
   lessonCategories,
   lessonDetails,
   youtubeVideos,
@@ -28,3 +29,7 @@ export { featuredContent, blogPosts, INITIAL_DISPLAY_COUNT } from "./contents";
 // Students
 export type { StudentVoice } from "./students";
 export { studentVoices } from "./students";
+
+// Pricing
+export type { PriceItem } from "./pricing";
+export { priceHighlights, priceGroups, priceNote } from "./pricing";

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import {
-  teacherInfo,
+  teachers,
   lessonCategories,
   lessonDetails,
   youtubeVideos,
@@ -20,88 +20,126 @@ export default function Lesson() {
       <div className="max-w-7xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-heading uppercase mb-2">
+          <h2 className="text-3xl md:text-4xl font-serif font-semibold text-heading uppercase tracking-wide mb-3">
             Lesson
           </h2>
-          <hr className="w-16 border-t-4 border-primary mx-auto mb-4" />
+          <hr className="w-12 border-t border-primary/60 mx-auto mb-4" />
           <p className="text-muted">전문 강사에게 배우는 맞춤형 레슨</p>
         </div>
 
-        {/* Teacher Hero Section */}
-        <div
-          ref={infoRef}
-          className="relative mb-16 rounded-2xl overflow-hidden animate-on-scroll"
-        >
-          {/* Background Image - 원본 비율 유지 */}
-          <div className="relative h-[500px] md:h-[650px]">
-            <Image
-              src="/assets/img/lesson/teacher.png"
-              alt="김훈섭 선생님"
-              fill
-              className="object-cover md:object-contain object-center md:object-top transition-transform duration-700 hover:scale-[1.02]"
-              sizes="(max-width: 768px) 100vw, 1280px"
-              priority
-            />
-            {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
-            <div className="absolute inset-0 bg-linear-to-r from-black/60 via-transparent to-transparent" />
+        {/* Instructor Sections */}
+        <div ref={infoRef} className="space-y-8 mb-16 animate-on-scroll">
+          {teachers.map((teacher) => {
+            const hasDiscography =
+              (teacher.singles?.length ?? 0) > 0 ||
+              (teacher.albums?.length ?? 0) > 0;
 
-            {/* Teacher Info Overlay */}
-            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
-              <div className="max-w-2xl">
-                <p className="text-primary font-medium mb-2 tracking-wider">
-                  INSTRUCTOR
-                </p>
-                <h3 className="text-4xl md:text-5xl font-bold text-white mb-2">
-                  {teacherInfo.name}
-                </h3>
-                <p className="text-white/80 text-lg mb-4">
-                  {teacherInfo.title}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {teacherInfo.education.map((edu, index) => (
-                    <span
-                      key={index}
-                      className="px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white/90 text-sm"
-                    >
-                      {edu}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Singles & Albums */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                    <h4 className="text-primary font-semibold mb-2 text-sm">
-                      훈제계란프로젝트 싱글
-                    </h4>
-                    <div className="flex flex-wrap gap-1">
-                      {teacherInfo.singles.map((single, index) => (
-                        <span
-                          key={index}
-                          className="text-white/80 text-xs after:content-['/'] after:mx-1 after:text-white/40 last:after:content-none"
-                        >
-                          {single}
-                        </span>
-                      ))}
+            return (
+              <div
+                key={teacher.name}
+                className="relative rounded-2xl overflow-hidden shadow-lg"
+              >
+                <div className="relative h-[500px] md:h-[650px]">
+                  {teacher.image ? (
+                    <Image
+                      src={teacher.image}
+                      alt={`${teacher.name} 선생님`}
+                      fill
+                      className="object-cover md:object-contain object-center md:object-top transition-transform duration-700 hover:scale-[1.02]"
+                      sizes="(max-width: 768px) 100vw, 1280px"
+                    />
+                  ) : (
+                    // 사진 준비 전 임시 브랜드 배경
+                    <div className="absolute inset-0 bg-linear-to-br from-[#3a332c] via-[#2b2520] to-[#8a5c34] flex items-center justify-center">
+                      <Image
+                        src="/assets/img/common/symbol_white.png"
+                        alt=""
+                        width={190}
+                        height={324}
+                        className="h-40 w-auto opacity-15"
+                      />
                     </div>
-                  </div>
-                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                    <h4 className="text-primary font-semibold mb-2 text-sm">
-                      음반 활동
-                    </h4>
-                    <p className="text-white/80 text-xs">
-                      앨범: {teacherInfo.albums.join(", ")}
-                    </p>
-                    <p className="text-white/60 text-xs mt-1">
-                      {teacherInfo.activities}
-                    </p>
+                  )}
+
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="absolute inset-0 bg-linear-to-r from-black/60 via-transparent to-transparent" />
+
+                  {/* Teacher Info Overlay */}
+                  <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
+                    <div className="max-w-2xl">
+                      <p className="text-primary font-medium mb-2 tracking-wider">
+                        INSTRUCTOR
+                      </p>
+                      <h3 className="text-4xl md:text-5xl font-bold text-white mb-2">
+                        {teacher.name}
+                      </h3>
+                      <p className="text-white/80 text-lg mb-4">
+                        {teacher.title}
+                      </p>
+
+                      {teacher.education.length > 0 && (
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {teacher.education.map((edu, index) => (
+                            <span
+                              key={index}
+                              className="px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white/90 text-sm"
+                            >
+                              {edu}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Singles & Albums */}
+                      {hasDiscography && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                          {teacher.singles && teacher.singles.length > 0 ? (
+                            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                              <h4 className="text-primary font-semibold mb-2 text-sm">
+                                {teacher.singlesLabel ?? "싱글"}
+                              </h4>
+                              <div className="flex flex-wrap gap-1">
+                                {teacher.singles.map((single, index) => (
+                                  <span
+                                    key={index}
+                                    className="text-white/80 text-xs after:content-['/'] after:mx-1 after:text-white/40 last:after:content-none"
+                                  >
+                                    {single}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                          ) : null}
+                          {teacher.albums && teacher.albums.length > 0 ? (
+                            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                              <h4 className="text-primary font-semibold mb-2 text-sm">
+                                음반 활동
+                              </h4>
+                              <p className="text-white/80 text-xs">
+                                앨범: {teacher.albums.join(", ")}
+                              </p>
+                              {teacher.activities && (
+                                <p className="text-white/60 text-xs mt-1">
+                                  {teacher.activities}
+                                </p>
+                              )}
+                            </div>
+                          ) : null}
+                        </div>
+                      )}
+
+                      {teacher.intro && (
+                        <p className="text-white/80 text-sm mt-2 max-w-xl leading-relaxed">
+                          {teacher.intro}
+                        </p>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            );
+          })}
         </div>
 
         {/* Lesson Categories - Modern Cards */}
@@ -156,7 +194,7 @@ export default function Lesson() {
         {/* YouTube Videos */}
         <div ref={videoRef} className="animate-on-scroll">
           <div className="text-center mb-8">
-            <h3 className="text-xl font-semibold text-heading mb-2">
+            <h3 className="text-2xl font-serif font-semibold text-heading mb-2">
               Performance
             </h3>
             <p className="text-muted text-sm">
@@ -167,20 +205,34 @@ export default function Lesson() {
             {youtubeVideos.map((video, index) => (
               <div
                 key={index}
-                className="group relative aspect-video rounded-xl overflow-hidden shadow-lg"
+                className="group bg-white rounded-2xl ring-1 ring-black/[0.04] shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden"
               >
-                <iframe
-                  src={video.src}
-                  title={video.title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="w-full h-full"
-                />
-                {/* Video Title Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/60 to-transparent p-4 pointer-events-none">
-                  <p className="text-white text-sm font-medium">
+                <div className="relative aspect-video">
+                  <iframe
+                    src={`${video.src}${
+                      video.src.includes("?") ? "&" : "?"
+                    }modestbranding=1&rel=0&color=white`}
+                    title={video.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full h-full"
+                  />
+                </div>
+                {/* Caption bar */}
+                <div className="flex items-center justify-between gap-3 px-5 py-4">
+                  <p className="font-serif font-semibold text-heading text-base truncate">
                     {video.title}
                   </p>
+                  <span className="shrink-0 inline-flex items-center gap-1.5 text-muted text-xs">
+                    <svg
+                      className="w-3.5 h-3.5 text-primary/70"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                    라이브 연주
+                  </span>
                 </div>
               </div>
             ))}

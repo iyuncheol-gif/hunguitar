@@ -2,12 +2,13 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #f97316;
-  --color-primary-dark: #ea580c;
-  --color-surface: #f3f4f6;
-  --color-surface-dark: #1f2937;
-  --color-heading: #1f2937;
-  --color-muted: #6b7280;
+  --color-primary: #a97545;
+  --color-primary-dark: #8a5c34;
+  --color-surface: #f7f4ef;
+  --color-surface-dark: #2b2520;
+  --color-heading: #2b2520;
+  --color-muted: #7a7268;
+  --font-serif: var(--font-playfair), "Georgia", "Times New Roman", serif;
 }
 
 :root {
@@ -53,4 +54,66 @@ body {
 
 .animate-on-scroll.visible {
   animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* ===== Hero premium effects ===== */
+@keyframes kenburns {
+  from {
+    transform: scale(1) translateY(0);
+  }
+  to {
+    transform: scale(1.09) translateY(-1%);
+  }
+}
+
+@keyframes heroReveal {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes scrollDot {
+  0% {
+    transform: translateY(-12px);
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(28px);
+    opacity: 0;
+  }
+}
+
+.hero-zoom {
+  animation: kenburns 24s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.hero-reveal {
+  opacity: 0;
+  animation: heroReveal 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-scroll-dot {
+  animation: scrollDot 2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-zoom,
+  .hero-scroll-dot {
+    animation: none;
+  }
+  .hero-reveal {
+    opacity: 1;
+    animation: none;
+  }
 }

@@ -1,17 +1,50 @@
-export const teacherInfo = {
-  name: "김훈섭",
-  title: "훈:어쿠스틱기타하우스 원장",
-  education: ["숭실대 교회음악과", "서울장신대 예배찬양사역대학원"],
-  singles: [
-    "아무것도 염려하지 말고",
-    "여기에 모인 우리",
-    "너 근심 걱정 말아라",
-    "아름답다",
-    "귤이 있어 감사",
-  ],
-  albums: ["사랑하면", "그대가 그대라서"],
-  activities: "다수의 음반 작편곡 / 연주 / 프로듀싱",
+export type Teacher = {
+  name: string;
+  title: string;
+  image: string | null;
+  education: string[];
+  singlesLabel?: string;
+  singles?: string[];
+  albums?: string[];
+  activities?: string;
+  intro?: string;
 };
+
+export const teachers: Teacher[] = [
+  {
+    name: "김훈섭",
+    title: "분당기타&보컬 원장",
+    image: "/assets/img/lesson/teacher.png",
+    education: ["숭실대 교회음악과", "서울장신대 예배찬양사역대학원"],
+    singlesLabel: "훈제계란프로젝트 싱글",
+    singles: [
+      "아무것도 염려하지 말고",
+      "여기에 모인 우리",
+      "너 근심 걱정 말아라",
+      "아름답다",
+      "귤이 있어 감사",
+    ],
+    albums: ["사랑하면", "그대가 그대라서"],
+    activities: "다수의 음반 작편곡 / 연주 / 프로듀싱",
+  },
+  {
+    // TODO: 임아란 강사 상세 내용(이력/사진 등)은 추후 업데이트 예정
+    name: "임아란",
+    title: "분당기타&보컬 원장",
+    image: null,
+    education: ["서울장신대 예배찬양사역대학원"],
+    singlesLabel: "훈제계란프로젝트 싱글",
+    singles: [
+      "아무것도 염려하지 말고",
+      "여기에 모인 우리",
+      "너 근심 걱정 말아라",
+      "아름답다",
+      "귤이 있어 감사",
+    ],
+    albums: ["사랑하면", "그대가 그대라서"],
+    activities: "다수의 음반 작편곡 / 연주 / 프로듀싱",
+  },
+];
 
 export const lessonCategories = [
   {
@@ -29,6 +62,7 @@ export const lessonCategories = [
     items: [
       "통기타(어쿠스틱) / 클래식기타",
       "일렉기타 / 우쿨렐레",
+      "보컬 / 실용음악 / 발성",
       "작곡 / 음악이론 / 송라이팅",
     ],
   },

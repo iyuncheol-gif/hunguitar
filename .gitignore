@@ -40,3 +40,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# 로컬 작업용 원본 이미지/광고 시안 (배포 제외)
+/sample_img

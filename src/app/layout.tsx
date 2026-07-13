@@ -1,8 +1,18 @@
 import type { Metadata } from "next";
+import { Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Header from "@/_components/header";
 import Footer from "@/_components/footer";
+import NoticeModal from "@/_components/notice-modal";
 import { siteConfig } from "@/constants";
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-playfair",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -99,7 +109,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" className={playfair.variable}>
       <head>
         <script
           type="application/ld+json"
@@ -110,6 +120,7 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
+        <NoticeModal />
       </body>
     </html>
   );
