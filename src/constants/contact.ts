@@ -38,7 +38,7 @@ export const locationInfo = {
   kakaoPlaceUrl: "https://map.kakao.com/?q=경기 성남시 분당구 느티로 65",
   phone: "031-714-7349",
   hours: "평일 10:00 - 21:00",
-  directions: "분당선 정자역 인근",
+  directions: "정자역 6번 출구에서 480m",
 };
 
 export const KAKAO_MAP_APP_KEY = "35321cad3638593651bfcad0ea32bbc4";

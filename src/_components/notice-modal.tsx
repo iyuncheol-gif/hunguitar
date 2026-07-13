@@ -99,7 +99,7 @@ export default function NoticeModal() {
             <p className="text-heading text-sm font-semibold leading-snug">
               경기 성남시 분당구 느티로 65, 4층 403호
             </p>
-            <p className="text-muted text-xs mt-1">분당선 정자역 인근</p>
+            <p className="text-muted text-xs mt-1">정자역 6번 출구에서 480m</p>
           </div>
 
           {/* Actions */}
