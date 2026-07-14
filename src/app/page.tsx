@@ -1,5 +1,6 @@
 import Home from "@/_components/home";
 import Services from "@/_components/services";
+import Programs from "@/_components/programs";
 import Gallery from "@/_components/gallery";
 import Lesson from "@/_components/lesson";
 import Pricing from "@/_components/pricing";
@@ -12,6 +13,7 @@ export default function Page() {
     <>
       <Home />
       <Services />
+      <Programs />
       <Gallery />
       <Lesson />
       <Pricing />

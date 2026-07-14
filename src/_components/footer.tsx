@@ -1,8 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { InstagramIcon } from "@/icons";
 import { socialLinks } from "@/constants";
+import { LANDING_PAGES } from "@/_components/landing";
 
 function YouTubeIcon({ className }: { className?: string }) {
   return (
@@ -62,9 +64,20 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom Bar — 카피라이트만 */}
+      {/* Bottom Bar — 프로그램 링크 + 카피라이트 */}
       <div className="border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 py-4 text-center">
+        <div className="max-w-7xl mx-auto px-4 py-4 text-center space-y-2.5">
+          <nav className="flex flex-wrap justify-center gap-x-4 gap-y-1.5">
+            {LANDING_PAGES.map((p) => (
+              <Link
+                key={p.slug}
+                href={p.slug}
+                className="text-white/45 text-xs hover:text-primary transition-colors"
+              >
+                {p.label}
+              </Link>
+            ))}
+          </nav>
           <p className="text-white/40 text-xs">
             © {currentYear} 분당기타&amp;보컬. All rights reserved.
           </p>
